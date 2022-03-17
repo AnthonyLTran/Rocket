@@ -2,10 +2,14 @@ package com.example.rocket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -20,23 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        start = findViewById(R.id.bStart);
-//        stop = findViewById(R.id.bStop);
-//        rocket = findViewById(R.id.rocket);
-//
-//        start.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.v("RocketTest", "Stop Clicked");
-//            }
-//        });
-//
-//        stop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.v("RocketTest", "Stop Clicked");
-//            }
-//        });
 
         ImageView rocketImage = findViewById(R.id.rocket);
         rocketImage.setBackgroundResource(R.drawable.flying_rocket);
@@ -51,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     public void startRocket(View view) {
@@ -60,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         rocketImage.setBackgroundResource(R.drawable.flying_rocket);
         AnimationDrawable rocketAnimation = (AnimationDrawable) rocketImage.getBackground();
         rocketAnimation.start();
+
+        Animation rocketAnim = AnimationUtils.loadAnimation(this, R.anim.fly_rocket);
+        rocketImage.startAnimation(rocketAnim);
     }
 
     public void stopRocket(View view) {
@@ -67,5 +55,8 @@ public class MainActivity extends AppCompatActivity {
         rocketImage.setBackgroundResource(R.drawable.flying_rocket);
         AnimationDrawable rocketAnimation = (AnimationDrawable) rocketImage.getBackground();
         rocketAnimation.stop();
+
+        Animation rocketAnim = AnimationUtils.loadAnimation(this, R.anim.fly_rocket);
+        rocketImage.clearAnimation();
     }
 }
