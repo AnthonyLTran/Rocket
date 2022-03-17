@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
         rocketImage.setBackgroundResource(R.drawable.flying_rocket);
         AnimationDrawable rocketAnimation = (AnimationDrawable) rocketImage.getBackground();
         rocketAnimation.stop();
-
-        Animation rocketAnim = AnimationUtils.loadAnimation(this, R.anim.fly_rocket);
         rocketImage.clearAnimation();
     }
 }
